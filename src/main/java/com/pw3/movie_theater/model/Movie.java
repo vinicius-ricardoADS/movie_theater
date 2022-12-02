@@ -3,18 +3,23 @@ package com.pw3.movie_theater.model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 
-public class Movies extends AbstractEntity<Long>{
+@Entity
+@Table(name = "movies")
+public class Movie extends AbstractEntity<Long>{
 
     @Column (name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column (nullable = false)
+    @Column (name = "releaseDate", nullable = false)
     private LocalDate releaseDate;
 
-    @Column (nullable = false)
+    @Column (name = "duration", nullable = false)
     private Integer duration;
 
     @Column (name = "directorName", nullable = true, length = 60)
@@ -22,23 +27,23 @@ public class Movies extends AbstractEntity<Long>{
 
     @Column (name = "genreMovie", nullable = false)
     @Enumerated(EnumType.STRING)
-    private MovieGenre movieGenres;
+    private MovieGenre movieGenre;
 
     @Column (nullable = true)
     private Integer classification;
 
-    public Movies(String name, LocalDate releaseDate, Integer duration, String director, MovieGenre movieGenres,
+    public Movie(String name, LocalDate releaseDate, Integer duration, String director, MovieGenre movieGenre,
             Integer classification) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.duration = duration;
         this.director = director;
-        this.movieGenres = movieGenres;
+        this.movieGenre = movieGenre;
         this.classification = classification;
     }
 
     public boolean hasGenre() {
-        if (getMovieGenres() == null)
+        if (getmovieGenre() == null)
             return false;
         return true;
     }
@@ -75,12 +80,12 @@ public class Movies extends AbstractEntity<Long>{
         this.director = director;
     }
 
-    public MovieGenre getMovieGenres() {
-        return movieGenres;
+    public MovieGenre getmovieGenre() {
+        return movieGenre;
     }
 
-    public void setMovieGenres(MovieGenre movieGenres) {
-        this.movieGenres = movieGenres;
+    public void setmovieGenre(MovieGenre movieGenre) {
+        this.movieGenre = movieGenre;
     }
 
     public Integer getClassification() {

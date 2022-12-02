@@ -22,13 +22,6 @@ public class Client extends AbstractEntity<Long> {
     @Column (name = "phone", nullable = true, length = 12)
     private String phone;
 
-    public Client(String name, LocalDate birthDate, String cpf, String phone) {
-        this.name = name;
-        this.birthDate = birthDate;
-        this.cpf = cpf;
-        this.phone = phone;
-    }
-
     public int getAge (LocalDate birthDate) {
         return LocalDate.now().getYear() -  birthDate.getYear(); 
     }

@@ -5,11 +5,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
-import javax.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+@Entity
+@Table(name = "sessions")
 public class Session extends AbstractEntity<Long> {
 
     @Column (name = "numberOfSession", nullable = false)
@@ -21,9 +26,9 @@ public class Session extends AbstractEntity<Long> {
     @Column (nullable = false)
     private LocalTime time;
 
-    @Column (nullable =  false)
-    @OneToMany (mappedBy = "movie")
-    private Movies movie;
+    @ManyToOne
+    @JoinColumn(name = "movie_id_fk")
+    private Movie movie;
 
     @Column (name = "numberLivingRoom", nullable = true)
     private Integer livingRoom;
@@ -32,7 +37,7 @@ public class Session extends AbstractEntity<Long> {
     @Column (nullable = false)
     private BigDecimal ticketPrice;
 
-    public Session(Integer number, LocalDate date, LocalTime time, Movies movie, Integer livingRoom,
+    public Session(Integer number, LocalDate date, LocalTime time, Movie movie, Integer livingRoom,
             BigDecimal ticketPrice) {
         this.number = number;
         this.date = date;
@@ -66,11 +71,11 @@ public class Session extends AbstractEntity<Long> {
         this.time = time;
     }
 
-    public Movies getMovie() {
+    public Movie getMovie() {
         return movie;
     }
 
-    public void setMovie(Movies movie) {
+    public void setMovie(Movie movie) {
         this.movie = movie;
     }
 
