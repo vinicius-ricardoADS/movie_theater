@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      
+        <title>Cine POP</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+      
+        <!-- Favicons -->
+        <link href="/assets/img/favicon.png" rel="icon">
+        <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+      
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+      
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link href = "/assets/css/style-cadastro.css" rel = "stylesheet">
+      
+    </head>
+    <body>
+        <div class = "container">
+
+            <h1 style = "text-align: center;" th:text = "${filme.id == null} ? 'Cadastro de Filmes' : 'Edição de Filmes' ">Cadastro de Filmes</h1>
+
+            <div th:replace="/fragments/alert :: alert"></div>
+
+            <form class = "container needs-validation" novalidate th:action="${filme.id == null} ? @{/filmes/salvar} : @{/filmes/editar}"
+            th:object="${filme}" method = "POST" onsubmit = "return confirm('Confirmar ação')">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome <span class = "obrigatorio">*</span></label>
+                    <input type="text" class="form-control" id="name" name = "name" aria-describedby="emailHelp" th:field="*{name}" required>
+                    <div class="invalid-feedback">
+                        Por favor, informe o nome do filme.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="diretor" class="form-label">Diretor <span class = "obrigatorio">*</span></label>
+                    <input type="text" class="form-control" id="diretor" name = "diretor" th:field="*{director}" required>
+                    <div class="invalid-feedback">
+                        Por favor, informe o diretor do filme.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="genero" class="form-label">Gênero <span class = "obrigatorio">*</span></label>
+                    <br>
+                    <select id = "genero" name="genero" required th:field = "*{movieGenre}">
+                        <option th:each="genero : ${T(com.pw3.movie_theater.model.MovieGenre).values()}" 
+                            th:value="${genero}" th:text="${genero.getDescription()}" th:selected="(${genero} == *{movieGenre})"></option>
+                    </select>
+
+                </div>
+                <div class="mb-3">
+                    <label for="data-lancamento" class="form-label">Data de Lançamento <span class = "obrigatorio">*</span></label>
+                    <input type="date" class="form-control" id="data-lancamento" name = "data_lancamento" th:field="*{releaseDate}" required>
+                    <div class="invalid-feedback">
+                        Por favor, informe a data de lançamento do filme.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="duracao" class="form-label">Duração em minutos (Opcional)</label>
+                    <input type="number" class="form-control" id="duracao" name = "duracao" th:field="*{duration}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="classificacao" class="form-label">Classificação (Opcional)</label>
+                    <input type="text" class="form-control" id="classificacao" name = "classificacao" th:field="*{classification}">
+                </div>
+
+                <input type="hidden" id="id" th:field="*{id}"/>
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <a class = "btn btn-danger" href = "/filmes/listar" role = "button">Cancelar</a>
+            </form>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script src = "/assets/js/cadastro.js"></script>
+    </body>
+    
+</html>

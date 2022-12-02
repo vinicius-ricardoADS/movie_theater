@@ -1,0 +1,39 @@
+.btn-warning, .btn-warning:hover {
+    color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+#btnCadastro {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 3px;
+  margin: 10px;
+  color: #fff;
+}
+
+.navbar {
+  width:100%;
+  background-color: #D5282A;
+  margin-bottom: 10px;
+}
+
+.nav-link {
+  font-size: 30px;
+  color: white;
+}
+
+.nav-link:hover {
+  color: red;
+}
+img#logo {
+  width: 100px;
+  height: 100px;
+}

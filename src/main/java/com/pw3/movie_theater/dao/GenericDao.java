@@ -10,5 +10,7 @@ public interface GenericDao<T, K> {
     
     void delete(K id);
 
+    T findById(K id);
+    
     List<T> findAll();
 }

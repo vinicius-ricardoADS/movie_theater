@@ -1,14 +1,14 @@
 package com.pw3.movie_theater.model;
 
 public enum MovieGenre {
-    COMEDY ("Comedy genre"),
-    HORROR ("Horror genre"),
-    ACTION ("Action genre"),
-    THRILLER ("Thriller genre"),
-    ADVENTURE ("Adventure genre"),
-    DRAMA ("Drama genre"),
-    FICTION ("Fiction genre"),
-    ROMANCE ("Romance genre");
+    COMEDY ("Comédia"),
+    HORROR ("Terror"),
+    ACTION ("Ação"),
+    THRILLER ("Thriller"),
+    ADVENTURE ("Aventura"),
+    DRAMA ("Drama"),
+    FICTION ("Ficção"),
+    ROMANCE ("Romance");
 
     private String description;
 

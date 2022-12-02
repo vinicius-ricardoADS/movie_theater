@@ -1,13 +1,17 @@
 package com.pw3.movie_theater.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "movies")
@@ -17,33 +21,27 @@ public class Movie extends AbstractEntity<Long>{
     private String name;
 
     @Column (name = "releaseDate", nullable = false)
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate releaseDate;
 
-    @Column (name = "duration", nullable = false)
+    @Column (name = "duration", nullable = true)
     private Integer duration;
 
-    @Column (name = "directorName", nullable = true, length = 60)
+    @Column (name = "directorName", nullable = false, length = 60)
     private String director;
 
-    @Column (name = "genreMovie", nullable = false)
+    @Column (name = "movieGenre", nullable = false)
     @Enumerated(EnumType.STRING)
     private MovieGenre movieGenre;
 
-    @Column (nullable = true)
+    @Column (name = "classification", nullable = true)
     private Integer classification;
 
-    public Movie(String name, LocalDate releaseDate, Integer duration, String director, MovieGenre movieGenre,
-            Integer classification) {
-        this.name = name;
-        this.releaseDate = releaseDate;
-        this.duration = duration;
-        this.director = director;
-        this.movieGenre = movieGenre;
-        this.classification = classification;
-    }
+    @OneToMany(mappedBy = "movie")
+    private List<Session> sessions;
 
     public boolean hasGenre() {
-        if (getmovieGenre() == null)
+        if (getMovieGenre() == null)
             return false;
         return true;
     }
@@ -80,11 +78,11 @@ public class Movie extends AbstractEntity<Long>{
         this.director = director;
     }
 
-    public MovieGenre getmovieGenre() {
+    public MovieGenre getMovieGenre() {
         return movieGenre;
     }
 
-    public void setmovieGenre(MovieGenre movieGenre) {
+    public void setMovieGenre(MovieGenre movieGenre) {
         this.movieGenre = movieGenre;
     }
 
@@ -94,6 +92,10 @@ public class Movie extends AbstractEntity<Long>{
 
     public void setClassification(Integer classification) {
         this.classification = classification;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
     }
 
     

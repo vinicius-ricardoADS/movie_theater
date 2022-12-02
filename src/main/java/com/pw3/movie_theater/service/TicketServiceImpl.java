@@ -1,31 +1,29 @@
 package com.pw3.movie_theater.service;
 
 import java.util.List;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pw3.movie_theater.dao.GenericDao;
-import com.pw3.movie_theater.model.Movie;
+import com.pw3.movie_theater.model.Ticket;
 
 @Service
-public class MovieServiceImpl implements GenericService<Movie, Long>{
+public class TicketServiceImpl implements GenericService<Ticket, Long> {
 
     @Autowired
-    private GenericDao<Movie, Long> dao;
+    private GenericDao<Ticket, Long> dao;
 
     @Transactional(readOnly = false)
     @Override
-    public void save(Movie Movie) {
-        dao.save(Movie);
+    public void save(Ticket ticket) {
+        dao.save(ticket);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void update(Movie movie) {
-        dao.update(movie);  
+    public void update(Ticket ticket) {
+        dao.update(ticket);  
     }
 
     @Transactional(readOnly = false)
@@ -36,13 +34,12 @@ public class MovieServiceImpl implements GenericService<Movie, Long>{
 
     @Transactional(readOnly = true)
     @Override
-    public List<Movie> findAll() {
+    public List<Ticket> findAll() {
         return dao.findAll();
     }
 
     @Override
-    public Movie findById(Long id) {
+    public Ticket findById(Long id) {
         return dao.findById(id);
     }
-    
 }

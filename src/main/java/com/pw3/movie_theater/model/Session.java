@@ -37,16 +37,6 @@ public class Session extends AbstractEntity<Long> {
     @Column (nullable = false)
     private BigDecimal ticketPrice;
 
-    public Session(Integer number, LocalDate date, LocalTime time, Movie movie, Integer livingRoom,
-            BigDecimal ticketPrice) {
-        this.number = number;
-        this.date = date;
-        this.time = time;
-        this.movie = movie;
-        this.livingRoom = livingRoom;
-        this.ticketPrice = ticketPrice;
-    }
-
     public Integer getNumber() {
         return number;
     }

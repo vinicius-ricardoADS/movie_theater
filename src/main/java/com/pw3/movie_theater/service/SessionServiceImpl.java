@@ -1,6 +1,7 @@
 package com.pw3.movie_theater.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pw3.movie_theater.dao.GenericDao;
@@ -8,6 +9,7 @@ import com.pw3.movie_theater.model.Session;
 
 import java.util.List;
 
+@Service
 public class SessionServiceImpl implements GenericService<Session, Long>{
 
     @Autowired
@@ -35,6 +37,11 @@ public class SessionServiceImpl implements GenericService<Session, Long>{
     @Override
     public List<Session> findAll() {
         return dao.findAll();
+    }
+
+    @Override
+    public Session findById(Long id) {
+        return dao.findById(id);
     }
     
 }
