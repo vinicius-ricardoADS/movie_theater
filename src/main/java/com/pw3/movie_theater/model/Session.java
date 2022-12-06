@@ -10,20 +10,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "sessions")
 public class Session extends AbstractEntity<Long> {
 
-    @Column (name = "numberOfSession", nullable = false)
-    private Integer number;
-
     @Column (nullable = false)
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate date;
 
     @Column (nullable = false)
+    @DateTimeFormat(iso = ISO.TIME)
     private LocalTime time;
 
     @ManyToOne
@@ -32,18 +31,6 @@ public class Session extends AbstractEntity<Long> {
 
     @Column (name = "numberLivingRoom", nullable = true)
     private Integer livingRoom;
-
-    @NumberFormat (style = Style.CURRENCY, pattern = "#,##0.00")
-    @Column (nullable = false)
-    private BigDecimal ticketPrice;
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
 
     public LocalDate getDate() {
         return date;
@@ -76,15 +63,5 @@ public class Session extends AbstractEntity<Long> {
     public void setLivingRoom(Integer livingRoom) {
         this.livingRoom = livingRoom;
     }
-
-    public BigDecimal getTicketPrice() {
-        return ticketPrice;
-    }
-
-    public void setTicketPrice(BigDecimal ticketPrice) {
-        this.ticketPrice = ticketPrice;
-    }
-
-    
     
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  th:fragment = "navMenu">
+<head>
+	<meta charset="UTF-8"/></head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" th:fragment = "navMenu">
+    <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img id = "logo" src = "/assets/img/video-camera-movie-svgrepo-com.svg" alt = "logo-cinema"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/"><i class="bi bi-house-door-fill"></i>Home</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/filmes/listar"><i class="bi bi-film"></i>Filmes</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/sessoes/listar"><i class="bi bi-tv"></i>Sessões</i></a>
+                </li>
+              </ul>
+          </div>
+    </div>
+</nav>
+
+</body>
+
+</html>

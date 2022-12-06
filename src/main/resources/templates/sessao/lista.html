@@ -30,14 +30,14 @@
 
 <body>
 
-  <nav th:replace="/fragments/menu :: navMenu"></nav>
+    <nav th:replace="/fragments/menu :: navMenu"></nav>
 
     <div class="container" id="listagem">
         
         <div th:replace="/fragments/alert :: alert"></div>
    
-        <a class="btn btn-danger btn-md" id = "btnCadastro" href="/filmes/cadastrar" role="button">
-            <span>Novo Filme</span>
+        <a class="btn btn-danger btn-md" id = "btnCadastro" href="/sessoes/cadastrar" role="button">
+            <span>Nova Sessão</span>
         </a>
 
         <div class="table-responsive">
@@ -45,35 +45,37 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Nome</th>
-                    <th>Diretor</th>
-                    <th>Gênero</th>
-                    <th>Data de Lançamento</th>
-                    <th>Classificação</th>
-                    <th>Duração</th>
+                    <th>Sala</th>
+                    <th>Filme</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th></th>
                     <th></th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr  th:each="f : ${filmes}">
-                      <td th:text="${f.id}"></td>
-                      <td th:text="${f.name}"></td>
-                      <td th:text="${f.director}"></td>
-                      <td th:text="${f.movieGenre.getDescription()}"></td>
-                      <td th:text="${f.releaseDate}"></td>
-                      <td th:text="${f.classification}"></td>
-                      <td th:text="${f.duration}"></td>
+                  <tr  th:each="s : ${sessoes}">
+                      <td th:text="${s.id}"></td>
+                      <td th:text="${s.livingRoom}"></td>
+                      <td th:text="${s.movie.name}"></td>
+                      <td th:text="${s.date}"></td>
+                      <td th:text="${s.time}"></td>
                       <td>
-                          <a class="btn btn-warning" th:href="@{/filmes/editar/{id} (id=${f.id})}" role="button">
+                          <a class="btn btn-warning" th:href="@{/sessoes/editar/{id} (id=${s.id})}" role="button">
                           Editar
                           </a>     
                       </td>
                       <td>
-                          <a class="btn btn-danger" th:onclick = "'if(confirm(\'Confirmar exclusão ?\')) { window.location.href = \'' + @{/filmes/excluir/{id}(id=${f.id})} + '\' }'" role = "button">
+                          <a class="btn btn-danger" th:onclick = "'if(confirm(\'Confirmar exclusão ?\')) { window.location.href = \'' + @{/sessoes/excluir/{id}(id=${s.id})} + '\' }'" role = "button">
                           Excluir
                           </a>      
                       </td>
+                      <td>
+                        <a class="btn btn-warning" th:href="@{/ingressos/comprar/{idSessao} (id=${s.id})}" role="button">
+                        Comprar Ingresso
+                        </a>     
+                    </td>
                   </tr>
                 </tbody>
             </table>
