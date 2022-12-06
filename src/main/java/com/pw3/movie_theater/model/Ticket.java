@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name = "tickets")
 public class Ticket extends AbstractEntity<Long>{
@@ -26,6 +29,7 @@ public class Ticket extends AbstractEntity<Long>{
     private Session session;
 
     @Column(name = "purchaseDate", nullable = false)
+    @DateTimeFormat(iso = ISO.TIME)
     private LocalDate purchaseDate;
 
     @Column(name = "quantity", nullable = false)
@@ -36,6 +40,10 @@ public class Ticket extends AbstractEntity<Long>{
     private TicketType ticketType;
 
     public Double checkAmountPaid() {
+        Double amountPaid = quantity * value;
+        if (ticketType == TicketType.HALF)
+            return amountPaid / 2;
+
         return quantity * value;
     }
 
