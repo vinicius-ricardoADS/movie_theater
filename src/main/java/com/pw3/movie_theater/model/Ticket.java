@@ -1,6 +1,8 @@
 package com.pw3.movie_theater.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +31,7 @@ public class Ticket extends AbstractEntity<Long>{
     private Session session;
 
     @Column(name = "purchaseDate", nullable = false)
-    @DateTimeFormat(iso = ISO.TIME)
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate purchaseDate;
 
     @Column(name = "quantity", nullable = false)
@@ -106,7 +108,16 @@ public class Ticket extends AbstractEntity<Long>{
         this.ticketType = ticketType;
     }
 
-    
+    public boolean isValid() {
+
+        LocalDate sessionDate = session.getDate();
+        LocalTime sessionTime = session.getTime();
+
+        LocalDateTime nowDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.now());
+        LocalDateTime sessionDateTime = LocalDateTime.of(sessionDate, sessionTime);
+
+        return nowDateTime.isBefore(sessionDateTime) || nowDateTime.equals(sessionDateTime);
+    }
     
     
 

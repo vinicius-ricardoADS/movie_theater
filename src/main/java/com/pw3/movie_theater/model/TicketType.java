@@ -1,8 +1,8 @@
 package com.pw3.movie_theater.model;
 
 public enum TicketType {
-    HALF ("Half ticket"),
-    NORMAL ("Normal ticket");
+    NORMAL ("Entrada Inteira"),
+    HALF ("Meia Entrada");
 
     private String description;
 

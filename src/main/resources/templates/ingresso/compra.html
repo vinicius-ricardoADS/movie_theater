@@ -31,7 +31,7 @@
 
                 <div class="mb-3">
                     <label for="valor" class="form-label">Valor unitário</label>
-                    <input type="number" class="form-control" id="valor" aria-describedby="emailHelp" th:value = "*{value}" disabled>
+                    <input type="number" class="form-control" id="valor" aria-describedby="emailHelp" th:field = "*{value}" th:value = "*{value}" readonly>
                 </div>
 
                <div class="mb-3">
@@ -48,12 +48,12 @@
 
                 <div class="mb-3">
                     <label for="dataCompra" class="form-label">Data da compra </label>
-                    <input type="date" class="form-control" id="dataCompra" th:value = "*{purchaseDate}" disabled>
+                    <input type="date" class="form-control" id="dataCompra" th:field = "*{purchaseDate}" th:value = "*{purchaseDate}" readonly>
                 </div>
 
                 <div class="mb-3">
                     <label for="idSessao" class="form-label">ID da sessão </label>
-                    <input type="text" class="form-control" id="dataCompra" th:value = "*{session.id}" disabled>
+                    <input type="text" class="form-control" id="idSessao" th:field = "*{session.id}" th:value = "*{session.id}" readonly>
                 </div>
 
                 <div class="mb-3">
@@ -61,6 +61,16 @@
                     <input type="number" class="form-control" id="qtde" th:field = "*{quantity}" min = "1" required>
                     <div class="invalid-feedback">
                         Por favor, informe uma quantidade válida de ingressos a serem comprados.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tipo">Tipo</label>
+                    <select id="tipo" class="form-control" th:field="*{ticketType}">
+                        <option th:each="tipo : ${tiposIngresso}" th:value="${tipo}" th:text="${tipo.description}"></option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Por favor, informe o tipo de ingresso.
                     </div>
                 </div>
 
