@@ -61,10 +61,13 @@ public class SessaoController {
 
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-        sessionService.delete(id);
-        attr.addFlashAttribute("success", "Sessão excluida com sucesso!");
+        if (sessionService.findById(id).getTickets().size() == 0) {
+            sessionService.delete(id);
+            attr.addFlashAttribute("success", "Sessão excluida com sucesso!");
+        } else {
+            attr.addFlashAttribute("fail", "Sessão não removida. Possui ticket(s) vinculado(s).");
+        }
        
-
         return "redirect:/sessoes/listar";
     }
 

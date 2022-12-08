@@ -1,13 +1,14 @@
 package com.pw3.movie_theater.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,6 +32,9 @@ public class Session extends AbstractEntity<Long> {
 
     @Column (name = "numberLivingRoom", nullable = true)
     private Integer livingRoom;
+
+    @OneToMany(mappedBy = "session")
+    private List<Ticket> tickets;
 
     public LocalDate getDate() {
         return date;
@@ -63,5 +67,13 @@ public class Session extends AbstractEntity<Long> {
     public void setLivingRoom(Integer livingRoom) {
         this.livingRoom = livingRoom;
     }
-    
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
 }
