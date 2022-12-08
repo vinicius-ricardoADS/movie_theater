@@ -65,7 +65,7 @@ public class SessaoController {
             sessionService.delete(id);
             attr.addFlashAttribute("success", "Sessão excluida com sucesso!");
         } else {
-            attr.addFlashAttribute("fail", "Sessão não removida. Possui ticket(s) vinculado(s).");
+            attr.addFlashAttribute("fail", "Sessão não removida. Possui ingresso(s) vinculado(s).");
         }
        
         return "redirect:/sessoes/listar";

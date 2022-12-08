@@ -61,7 +61,7 @@
                       <td th:text="${i.ticketType.description}"></td>
                       <td th:if = "${i.isValid()}">
                         <a class="btn btn-danger" th:onclick = "'if(confirm(\'Cancelar compra ?\')) { window.location.href = \'' + @{/ingressos/cancelar/{id}(id=${i.id})} + '\' }'" role = "button">
-                        Cancelar
+                        Cancelar compra
                         </a>      
                     </td>
                   </tr>
