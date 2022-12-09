@@ -41,7 +41,6 @@ public class TicketController {
         ticket.setPurchaseDate(LocalDate.now());
         ticket.setValue(20.00);
         ticket.setSession(session);
-        System.out.println(session.getId());
         model.addAttribute("ingresso", ticket);
 
         return "/ingresso/compra";

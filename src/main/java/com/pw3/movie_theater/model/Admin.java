@@ -6,12 +6,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "admins")
-public class Admin extends AbstractEntity<Long> {
+public class Admin extends AbstractEntity<Long>{
 
     @Column(name = "username", unique = true, nullable = false, length = 60)
     private String username;
 
-    @Column(name = "password", nullable = false, length = 15)
+    @Column(name = "password", nullable = false)
     private String virtualPassword;
 
     public String getUsername() {
@@ -30,4 +30,5 @@ public class Admin extends AbstractEntity<Long> {
         this.virtualPassword = virtualPassword;
     }
 
+    
 }

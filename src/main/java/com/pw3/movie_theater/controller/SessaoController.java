@@ -27,6 +27,10 @@ public class SessaoController {
 
     @GetMapping("/cadastrar")
     public String cadastrar(Session sessao, ModelMap model) {
+        if (getFilmes().size() == 0) {
+            model.addAttribute("fail", "É preciso haver ao menos um filme cadastrado para cadastrar uma sessão.");
+            return listar(model);
+        }
         if (!model.containsKey("sessao"))
             model.addAttribute("sessao", new Session());
         return "/sessao/cadastro";

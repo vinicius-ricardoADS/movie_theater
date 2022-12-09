@@ -50,4 +50,22 @@ public abstract class AbstractDao<T,PK extends Serializable>{
 
         return query.getResultList();
     }
+
+    protected T createQueryThatReturnsOneResult(String jpql, Object... params){
+        TypedQuery<T> query = entityManager.createQuery(jpql,entityClass);
+
+        for ( int i= 0; i < params.length; i++){
+            query.setParameter(i+1,params[i]);
+        }
+
+        T result;
+        try {
+            result = query.getSingleResult();
+        } catch (Exception e) {
+            result = null;
+        }
+        
+        return result;
+
+    }
 }

@@ -39,7 +39,7 @@
                     <label for="birthDate" class="form-label">Data de Nascimento <span class = "obrigatorio">*</span></label>
                     <input type="date" class="form-control" id="birthDate" name = "birthDate" th:field="*{birthDate}" required>
                     <div class="invalid-feedback">
-                        Por favor, informe a data de nascimento.
+                        Por favor, informe a data de nascimento do cliente.
                     </div>
                 </div>
                 <div class="mb-3">
@@ -51,10 +51,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Telefone </label>
-                    <input type="text" class="form-control" id="phone" name = "phone" th:field="*{phone}">
-                    <div class="invalid-feedback">
-                        Por favor, informe o telefone do cliente.
-                    </div>
+                    <input type="text" class="form-control" id="phone" name = "phone" th:field="*{phone}" placeholder="(16) 99999-9999">
                 </div>
 
                 <input type="hidden" id="id" th:field="*{id}"/>

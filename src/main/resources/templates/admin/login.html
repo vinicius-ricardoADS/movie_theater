@@ -22,11 +22,11 @@
     <body>
         <div class = "container">
 
-            <h1 style = "text-align: center;">Cadastro de Administrador</h1>
+            <h1 style = "text-align: center;" th:text = "'Login de Administrador' ">Cadastro de Administrador</h1>
 
             <div th:replace="/fragments/alert :: alert"></div>
 
-            <form class = "container needs-validation" novalidate th:action="@{/admins/salvar}"
+            <form class = "container needs-validation" novalidate th:action="@{/admins/login}"
             th:object="${admin}" method = "POST">
                 <div class="mb-3">
                     <label for="username" class="form-label">Usuário <span class = "obrigatorio">*</span></label>

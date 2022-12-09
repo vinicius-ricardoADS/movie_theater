@@ -390,6 +390,10 @@ h6 {
   text-transform: uppercase;
 }
 
+#hero p {
+  color: #fff;
+}
+
 #hero .btn-get-started {
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
